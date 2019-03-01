@@ -36,6 +36,6 @@ mv gen/k8s/io/* k8s/io
 touch k8s/__init__.py
 
 # Clean up intermediate directories and files
-rm -rf gen
 rm -rf k8s.io/
-rm kubernetes/__init__.py
+rm -rf gen/k8s
+rm -rf gen/k8s.io
