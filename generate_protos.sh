@@ -35,6 +35,9 @@ mkdir -p k8s/io
 mv gen/k8s/io/* k8s/io
 touch k8s/__init__.py
 
+mkdir -p k8s/io/api/core/v1/
+cp api/core/v1/generated.proto k8s/io/api/core/v1/
+
 # Clean up intermediate directories and files
 rm -rf k8s.io/
 rm -rf gen/k8s
