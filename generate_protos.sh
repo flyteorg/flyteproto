@@ -18,7 +18,6 @@ cp kubernetes/apimachinery/pkg/runtime/schema/generated.proto k8s.io/apimachiner
 mkdir -p k8s.io/apimachinery/pkg/apis/meta/v1/
 cp kubernetes/apimachinery/pkg/apis/meta/v1/generated.proto k8s.io/apimachinery/pkg/apis/meta/v1/generated.proto
 
-
 # Generate imported protos
 docker run -v $DIR:/defs namely/protoc-all -f k8s.io/apimachinery/pkg/runtime/generated.proto -l python -o gen
 docker run -v $DIR:/defs namely/protoc-all -f k8s.io/apimachinery/pkg/api/resource/generated.proto -l python -o gen
@@ -39,6 +38,5 @@ mkdir -p k8s/io/api/core/v1/
 cp api/core/v1/generated.proto k8s/io/api/core/v1/
 
 # Clean up intermediate directories and files
-rm -rf k8s.io/
 rm -rf gen/k8s
 rm -rf gen/k8s.io
