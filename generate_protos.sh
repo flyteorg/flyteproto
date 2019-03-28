@@ -18,7 +18,7 @@ cp kubernetes/apimachinery/pkg/runtime/schema/generated.proto k8s.io/apimachiner
 mkdir -p k8s.io/apimachinery/pkg/apis/meta/v1/
 cp kubernetes/apimachinery/pkg/apis/meta/v1/generated.proto k8s.io/apimachinery/pkg/apis/meta/v1/generated.proto
 
-# Generate imported protos
+# Generate imported protos in python
 docker run -v $DIR:/defs namely/protoc-all -f k8s.io/apimachinery/pkg/runtime/generated.proto -l python -o gen
 docker run -v $DIR:/defs namely/protoc-all -f k8s.io/apimachinery/pkg/api/resource/generated.proto -l python -o gen
 docker run -v $DIR:/defs namely/protoc-all -f k8s.io/apimachinery/pkg/runtime/schema/generated.proto -l python -o gen
@@ -26,7 +26,9 @@ docker run -v $DIR:/defs namely/protoc-all -f k8s.io/apimachinery/pkg/util/intst
 docker run -v $DIR:/defs namely/protoc-all -f k8s.io/apimachinery/pkg/apis/meta/v1/generated.proto -l python -o gen
 
 # Generate core proto
-docker run -v $DIR:/defs namely/protoc-all -f api/core/v1/generated.proto -l python -i . -o gen
+mkdir -p k8s/io/api/core/v1/
+cp api/core/v1/generated.proto k8s/io/api/core/v1/
+docker run -v $DIR:/defs namely/protoc-all -f k8s/io/api/core/v1/generated.proto -l python -i . -o gen
 
 # python is a pain with imports when it comes to filenames with "." in them
 rm -rf k8s/io
