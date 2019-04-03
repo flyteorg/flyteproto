@@ -4,3 +4,6 @@
 [submodule "k8s.io/apimachinery"]
 	path = kubernetes/apimachinery
 	url = https://github.com/kubernetes/apimachinery
+[submodule "kubernetes/api"]
+	path = kubernetes/api
+	url = https://github.com/kubernetes/api
