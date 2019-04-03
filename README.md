@@ -5,7 +5,7 @@ Kubeproto is a collection of generated [protocol buffer](https://developers.goog
 ## Contents
 
 ### k8s
-Generated protobuf code (currently python ly), complete with imports synced from k8s.io/apimachinery in [kubernetes/apimachinery](https://github.com/kubernetes/apimachinery)
+Generated protobuf code (currently python only), complete with imports synced from k8s.io/apimachinery in [kubernetes/apimachinery](https://github.com/kubernetes/apimachinery)
 
 ### k8s.io
 Core and imported protobuf definitions in a path that matches their declared packages. Use these to generate protobufs that import the core kubernetes protos.
