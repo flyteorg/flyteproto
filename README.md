@@ -1,6 +1,6 @@
-# kubeproto
+# flyteproto
 
-Kubeproto is a collection of generated [protocol buffer](https://developers.google.com/protocol-buffers/) bindings for kubernetes generated [protobuf definitions](https://github.com/kubernetes/api/blob/master/core/v1/generated.proto). 
+Flyteproto is a collection of generated [protocol buffer](https://developers.google.com/protocol-buffers/) bindings for kubernetes generated [protobuf definitions](https://github.com/kubernetes/api/blob/master/core/v1/generated.proto). 
 
 ## Contents
 
