@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="k8s-proto",
-    version="0.0.1",
+    version="0.0.2",
     maintainer="lyft",
     maintainer_email='dev@lyft.com',
     description="Generated kubernetes proto code",
