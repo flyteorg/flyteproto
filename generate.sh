@@ -26,19 +26,15 @@ docker run -v $DIR:/defs namely/protoc-all -f k8s.io/apimachinery/pkg/util/intst
 docker run -v $DIR:/defs namely/protoc-all -f k8s.io/apimachinery/pkg/apis/meta/v1/generated.proto -l python -o gen
 
 # Generate core proto
-mkdir -p k8s/io/api/core/v1/
-cp kubernetes/api/core/v1/generated.proto k8s/io/api/core/v1/
-docker run -v $DIR:/defs namely/protoc-all -f k8s/io/api/core/v1/generated.proto -l python -i . -o gen
+mkdir -p k8s.io/api/core/v1/
+cp kubernetes/api/core/v1/generated.proto k8s.io/api/core/v1/
+docker run -v $DIR:/defs namely/protoc-all -f k8s.io/api/core/v1/generated.proto -l python -i . -o gen
 
 # python is a pain with imports when it comes to filenames with "." in them
 rm -rf k8s/io
 mkdir -p k8s/io
 mv gen/k8s/io/* k8s/io
 touch k8s/__init__.py
-
-# Also copy the core generated proto to its reference path for dependent proto definitions (that import core k8s protos).
-mkdir -p k8s.io/api/core/v1/
-cp kubernetes/api/core/v1/generated.proto k8s.io/api/core/v1/
 
 # Clean up intermediate directories and files
 rm -rf gen
