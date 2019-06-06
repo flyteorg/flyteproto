@@ -1,8 +1,6 @@
 DIR=`pwd`
 
-# Before running this make sure to init git submodules:
-# git submodule init
-# git submodule update
+git submodule update --init
 
 rm -rf k8s.io/
 
@@ -18,6 +16,7 @@ cp kubernetes/apimachinery/pkg/runtime/schema/generated.proto k8s.io/apimachiner
 mkdir -p k8s.io/apimachinery/pkg/apis/meta/v1/
 cp kubernetes/apimachinery/pkg/apis/meta/v1/generated.proto k8s.io/apimachinery/pkg/apis/meta/v1/generated.proto
 
+# BEGIN PYTHON CODE GENERATION
 # Generate imported protos in python
 docker run -v $DIR:/defs namely/protoc-all -f k8s.io/apimachinery/pkg/runtime/generated.proto -l python -o gen
 docker run -v $DIR:/defs namely/protoc-all -f k8s.io/apimachinery/pkg/api/resource/generated.proto -l python -o gen
@@ -38,3 +37,19 @@ touch k8s/__init__.py
 
 # Clean up intermediate directories and files
 rm -rf gen
+# END PYTHON CODE GENERATION
+
+# BEGIN GOLANG CODE GENERATION
+
+# Generate imported protos in python
+docker run -v $DIR:/defs namely/protoc-all -f k8s.io/apimachinery/pkg/runtime/generated.proto -l go
+docker run -v $DIR:/defs namely/protoc-all -f k8s.io/apimachinery/pkg/api/resource/generated.proto -l go
+docker run -v $DIR:/defs namely/protoc-all -f k8s.io/apimachinery/pkg/runtime/schema/generated.proto -l go
+docker run -v $DIR:/defs namely/protoc-all -f k8s.io/apimachinery/pkg/util/intstr/generated.proto -l go 
+docker run -v $DIR:/defs namely/protoc-all -f k8s.io/apimachinery/pkg/apis/meta/v1/generated.proto -l go
+
+# Generate core proto
+mkdir -p k8s.io/api/core/v1/
+cp kubernetes/api/core/v1/generated.proto k8s.io/api/core/v1/
+docker run -v $DIR:/defs namely/protoc-all -f k8s.io/api/core/v1/generated.proto -l go -i .
+# END GOLANG CODE GENERATION
