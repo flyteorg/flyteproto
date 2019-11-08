@@ -15,6 +15,6 @@ setuptools.setup(
     url="https://github.com/lyft/flyteproto",
     packages=setuptools.find_packages(),
     install_requires=[
-         "protobuf>=3.6.1,<3.7.0",
+         "protobuf>=3.6.0,<4.0.0",
     ],
 )
