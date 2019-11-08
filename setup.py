@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="k8s-proto",
-    version="0.0.2",
+    version="0.0.3",
     maintainer="lyft",
     maintainer_email='dev@lyft.com',
     description="Generated kubernetes proto code",
@@ -15,6 +15,6 @@ setuptools.setup(
     url="https://github.com/lyft/flyteproto",
     packages=setuptools.find_packages(),
     install_requires=[
-         "protobuf>=3.6.1,<3.7.0",
+         "protobuf>=3.6.0,<4.0.0",
     ],
 )
